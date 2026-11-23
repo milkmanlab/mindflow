@@ -3,4 +3,4 @@ src/**
 tsconfig.json
 package.json.example
 node_modules/**
-*.map
+**/*.map
