@@ -56,3 +56,5 @@ Two things to know:
 [MIT](LICENSE). Third-party notices are in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
 
 Issues and feedback: <https://github.com/milkmanlab/mindflow/issues>
+
+If MindFlow helps you, you can support its development: <https://buymeacoffee.com/milkman_lab>

@@ -56,3 +56,5 @@ MindFlow は、あなたのデータを外に送りません。
 [MIT](LICENSE)。サードパーティのライセンス表示は [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md) にあります。
 
 不具合・ご意見: <https://github.com/milkmanlab/mindflow/issues>
+
+MindFlow が役に立ったら、開発を応援していただけると嬉しいです: <https://buymeacoffee.com/milkman_lab>
