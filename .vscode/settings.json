@@ -1,0 +1,5 @@
+{
+  // F5 で拡張機能ホストがコード 134 で落ちる件（Issue #86、microsoft/vscode#336233）の対策。
+  // js-debug の Network ビューを止める。これで直接起動の構成でも落ちなくなった（VS Code 1.146）
+  "debug.javascript.enableNetworkView": false
+}

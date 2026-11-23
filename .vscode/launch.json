@@ -1,0 +1,38 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      // F5 の既定。VS Code が拡張機能開発ホストを直接起動する。デバッグを止めると開発ホストも閉じる。
+      // VS Code 1.146 では、この方式で拡張機能ホストがコード 134 で異常終了することがあった
+      // （microsoft/vscode#336233、Issue #86）。.vscode/settings.json の
+      // debug.javascript.enableNetworkView: false で落ちなくなる。再発したら下の回避策の構成を使う
+      "name": "Launch MindFlow Extension (F5)",
+      "type": "extensionHost",
+      "request": "launch",
+      "args": [
+        "--extensionDevelopmentPath=${workspaceFolder}/vscode-extension"
+      ],
+      "outFiles": [
+        "${workspaceFolder}/vscode-extension/out/**/*.js"
+      ],
+      "preLaunchTask": "build:all"
+    },
+    {
+      // 回避策。ビルドしてから拡張機能開発ホストをコマンドで起動し（tasks.json の launch:devhost）、
+      // デバッグ用のポートにデバッガーを接続する。直接起動の構成が落ちるときに使う
+      "name": "Launch MindFlow Extension (開発ホストをコマンドで起動)",
+      "type": "node",
+      "request": "attach",
+      "address": "127.0.0.1",
+      "port": 9333,
+      "timeout": 30000,
+      "continueOnAttach": true,
+      "autoAttachChildProcesses": false,
+      "sourceMaps": true,
+      "outFiles": [
+        "${workspaceFolder}/vscode-extension/out/**/*.js"
+      ],
+      "preLaunchTask": "launch:devhost"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build:all",
+      "type": "npm",
+      "script": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      // ビルドしてから、拡張機能開発ホストをデバッグ用のポート 9333 つきで起動する
+      // （launch.json の「起動してから接続」から使う）
+      "label": "launch:devhost",
+      "type": "shell",
+      "command": "code",
+      "args": [
+        "--new-window",
+        "--inspect-extensions=9333",
+        "--extensionDevelopmentPath=${workspaceFolder}/vscode-extension"
+      ],
+      "dependsOn": "build:all",
+      "presentation": {
+        "reveal": "silent"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

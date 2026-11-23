@@ -1,0 +1,14 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+*.vsix
+out/
+vscode-extension/dist/
+vscode-extension/out/
+test-results/
+playwright-report/

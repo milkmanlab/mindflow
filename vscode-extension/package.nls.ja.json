@@ -1,0 +1,11 @@
+{
+  "extension.displayName": "MindFlow - Markdown マインドマップエディタ",
+  "extension.description": "Markdown ファイルをマインドマップとして編集できます。テキストと双方向に同期し、ローカルだけで動きます。",
+  "customEditor.displayName": "MindFlow マインドマップエディタ",
+  "command.openAsMindMap.title": "MindFlow: マインドマップとして開く",
+  "command.createNewMap.title": "MindFlow: 新規マインドマップを作成",
+  "config.language.description": "MindFlow エディタの表示言語。変えると、開いている MindFlow エディタが読み込み直されます。",
+  "config.language.auto": "VS Code の表示言語に合わせる（日本語なら日本語、それ以外は英語）。",
+  "config.language.ja": "日本語",
+  "config.language.en": "English"
+}

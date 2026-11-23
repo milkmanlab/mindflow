@@ -1,0 +1,11 @@
+{
+  "extension.displayName": "MindFlow - Markdown Mind Map Editor",
+  "extension.description": "Edit Markdown files as mind maps, with two-way sync. Local only, no account needed.",
+  "customEditor.displayName": "MindFlow Mind Map Editor",
+  "command.openAsMindMap.title": "MindFlow: Open as Mind Map",
+  "command.createNewMap.title": "MindFlow: Create New Mind Map",
+  "config.language.description": "Language of the MindFlow editor. Changing it reloads open MindFlow editors.",
+  "config.language.auto": "Follow the VS Code display language (Japanese if it is Japanese, otherwise English).",
+  "config.language.ja": "Japanese",
+  "config.language.en": "English"
+}

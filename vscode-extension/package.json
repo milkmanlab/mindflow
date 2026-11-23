@@ -1,0 +1,113 @@
+{
+  "name": "mindflow-vscode",
+  "displayName": "%extension.displayName%",
+  "description": "%extension.description%",
+  "version": "1.0.0",
+  "publisher": "milkmanlab",
+  "license": "MIT",
+  "icon": "media/icon.png",
+  "homepage": "https://github.com/milkmanlab/mindflow#readme",
+  "bugs": {
+    "url": "https://github.com/milkmanlab/mindflow/issues"
+  },
+  "keywords": [
+    "markdown",
+    "mindmap",
+    "mind map",
+    "outline",
+    "visual editor",
+    "diagram",
+    "マインドマップ"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/milkmanlab/mindflow"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "mindflow.markdownEditor",
+        "displayName": "%customEditor.displayName%",
+        "selector": [
+          {
+            "filenamePattern": "*.md"
+          },
+          {
+            "filenamePattern": "*.markdown"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "commands": [
+      {
+        "command": "mindflow.openAsMindMap",
+        "title": "%command.openAsMindMap.title%",
+        "category": "MindFlow"
+      },
+      {
+        "command": "mindflow.createNewMap",
+        "title": "%command.createNewMap.title%",
+        "category": "MindFlow"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "mindflow.createNewMap",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation@100"
+        }
+      ]
+    },
+    "configurationDefaults": {
+      "workbench.editorAssociations": {
+        "*.mindflow.md": "mindflow.markdownEditor"
+      }
+    },
+    "configuration": {
+      "title": "MindFlow",
+      "properties": {
+        "mindflow.language": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "ja",
+            "en"
+          ],
+          "default": "auto",
+          "enumDescriptions": [
+            "%config.language.auto%",
+            "%config.language.ja%",
+            "%config.language.en%"
+          ],
+          "markdownDescription": "%config.language.description%"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^4.1.1",
+    "typescript": "^7.0.2"
+  },
+  "overrides": {
+    "minimatch": "^11.0.8"
+  }
+}

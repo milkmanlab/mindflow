@@ -1,0 +1,73 @@
+# Dependabot の設定（バージョン更新）。方針は docs/development-guidelines.md の 5.5 を参照。
+# - 月 1 回（日本時間）。マイナー・パッチは 1 つの PR にまとめ、メジャーは 1 件ずつ PR にする
+# - 公開から 7 日たっていない版は提案しない（cooldown）
+# - コミットメッセージは Conventional Commits の形（chore(deps) など）
+version: 2
+
+updates:
+  # Webview アプリ（ルート）
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
+    groups:
+      # 片方だけ上がると噛み合わないものは、メジャーも含めてセットで 1 つの PR にする
+      react:
+        patterns: [react, react-dom, '@types/react', '@types/react-dom']
+      lucide:
+        patterns: [lucide, lucide-react]
+      # それ以外のマイナー・パッチは 1 つの PR。メジャーは 1 件ずつ PR になる
+      minor-and-patch:
+        update-types: [minor, patch]
+        exclude-patterns:
+          # 版ごとに使う Chromium も変わるので、まとめ PR に入れず、単独の PR で確認する。
+          # ブラウザが合わない環境は E2E_CHROMIUM_PATH で回避できる（docs/development-guidelines.md の 4 章）
+          - '@playwright/test'
+    ignore:
+      # CI の Node（22）に合わせる。メジャーは Node を上げるときに手で上げる
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
+
+  # 拡張機能ホスト（vscode-extension/）
+  - package-ecosystem: npm
+    directory: /vscode-extension
+    schedule:
+      interval: monthly
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 5
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: chore(deps)
+      prefix-development: chore(deps-dev)
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # engines.vscode より新しくすると、vsce package が失敗する。engines.vscode を上げるときに、手で合わせる
+      - dependency-name: '@types/vscode'
+      # 拡張機能は Node 20 系の型に合わせている
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
+
+  # GitHub Actions（.github/workflows/）
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      timezone: Asia/Tokyo
+    open-pull-requests-limit: 3
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: ci(deps)
+    groups:
+      actions:
+        patterns: ['*']

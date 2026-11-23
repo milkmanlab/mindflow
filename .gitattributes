@@ -1,0 +1,3 @@
+# Vitest はスナップショットを常に LF で書き直す。Windows（core.autocrlf=true）で、
+# テストを実行するたびに「変更あり」と表示されないよう、作業ツリーでも LF にそろえる
+*.snap text eol=lf

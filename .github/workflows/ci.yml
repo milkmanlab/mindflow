@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies (Root)
+        run: npm ci
+
+      - name: Install dependencies (VS Code Extension)
+        run: npm --prefix vscode-extension ci
+
+      - name: Type Check (Lint)
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm run test
+
+      - name: Build Webview and Extension
+        run: npm run build
+
+  e2e:
+    # E2E は時間がかかるので PR のときだけ回す。main への push では、速い lint・test・build だけを回す
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    # ブラウザとフォントを入れ済みの Playwright 公式イメージで動かす（apt のミラーが詰まると数分かかっていた）。
+    # タグは package.json の @playwright/test の版と同じにする。ずれると src/ciConfig.test.ts が落ちる
+    container:
+      image: mcr.microsoft.com/playwright:v1.65.0-noble
+      options: --ipc=host
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install dependencies (Root)
+        run: npm ci
+
+      - name: Run E2E tests
+        run: npm run e2e
