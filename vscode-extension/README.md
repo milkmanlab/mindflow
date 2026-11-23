@@ -1,6 +1,6 @@
 # MindFlow - Markdown Mind Map Editor
 
-English | [日本語](README.ja.md)
+English | [日本語](https://github.com/milkmanlab/mindflow/blob/main/README.md)
 
 **Keep your secrets close. Don't compromise on quality.**
 
@@ -53,7 +53,7 @@ Two things to know:
 
 ## License
 
-[MIT](LICENSE). Third-party notices are in [THIRD_PARTY_LICENSES.md](THIRD_PARTY_LICENSES.md).
+[MIT](LICENSE). Third-party notices are in [THIRD_PARTY_LICENSES.md](https://github.com/milkmanlab/mindflow/blob/main/vscode-extension/THIRD_PARTY_LICENSES.md).
 
 Issues and feedback: <https://github.com/milkmanlab/mindflow/issues>
 
